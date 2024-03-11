@@ -1,7 +1,9 @@
 package com.hixtrip.sample.domain.order;
 
 import com.hixtrip.sample.domain.order.model.Order;
+import com.hixtrip.sample.domain.order.repository.OrderRepository;
 import com.hixtrip.sample.domain.pay.model.CommandPay;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Component;
  * todo 只需要实现创建订单即可
  */
 @Component
+@RequiredArgsConstructor
 public class OrderDomainService {
 
+    private final OrderRepository orderRepository;
 
     /**
      * todo 需要实现
@@ -18,6 +22,7 @@ public class OrderDomainService {
      */
     public void createOrder(Order order) {
         //需要你在infra实现, 自行定义出入参
+        orderRepository.createOrder(order);
     }
 
     /**
@@ -26,6 +31,7 @@ public class OrderDomainService {
      */
     public void orderPaySuccess(CommandPay commandPay) {
         //需要你在infra实现, 自行定义出入参
+        orderRepository.orderPaySuccess(commandPay);
     }
 
     /**
@@ -34,5 +40,6 @@ public class OrderDomainService {
      */
     public void orderPayFail(CommandPay commandPay) {
         //需要你在infra实现, 自行定义出入参
+        orderRepository.orderPayFail(commandPay);
     }
 }
